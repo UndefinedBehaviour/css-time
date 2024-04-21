@@ -1,0 +1,26 @@
+{
+  "name": "css-time",
+  "version": "1.0.0",
+  "description": "a useless css clock",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UndefinedBehaviour/css-time.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UndefinedBehaviour/css-time/issues"
+  },
+  "homepage": "https://github.com/UndefinedBehaviour/css-time#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

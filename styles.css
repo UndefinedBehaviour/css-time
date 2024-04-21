@@ -1,0 +1,80 @@
+@property --time {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
+}
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.clock {
+    position: absolute;
+    width: 100vmin;
+    height: 100vmin;
+    animation: passing-time 43200s infinite steps(43200);
+}
+
+.hour-mark {
+    width: 1vmin;
+    height: 10vmin;
+    margin: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    background: black;
+    transform: rotate(calc(var(--hour) * 30deg));
+    transform-origin: center 50vmin;
+}
+
+.hour-mark::after {
+    content: var(--hour-str);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.second-hand {
+    background: red;
+    position: absolute;
+    left: 50%;
+    width: 1px;
+    height: 50vmin;
+    transform: translateX(-50%) rotate(calc((var(--time) + var(--offset)) * 360deg / 60));
+    transform-origin: center 50vmin;
+}
+
+.minute-hand {
+    background: black;
+    box-sizing: border-box;
+    position: absolute;
+    left: 50%;
+    width: 4px;
+    height: 45vmin;
+    transform: translateX(-50%) rotate(calc((var(--time) + var(--offset)) * 360deg / 60 / 60));
+    transform-origin: center 45vmin;
+    margin-top: 5vmin;
+}
+
+.hour-hand {
+    background: black;
+    box-sizing: border-box;
+    position: absolute;
+    left: 50%;
+    width: 8px;
+    height: 35vmin;
+    transform: translateX(-50%) rotate(calc((var(--time) + var(--offset)) * 360deg / 60 / 60 / 12));
+    transform-origin: center 35vmin;
+    margin-top: 15vmin;
+}
+
+@keyframes passing-time {
+    0% {
+        --time: 0;
+    }
+    100% {
+      --time: 43200;
+    }
+  }

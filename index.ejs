@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+    <title>CSS clock</title>
+</head>
+<body>
+    <div class="clock" style="--offset:<%= ~~(Date.now() % 43200000 / 1000) %>">
+        <div class="hour-mark" style="--hour:1;--hour-str:'1'"></div>
+        <div class="hour-mark" style="--hour:2;--hour-str:'2'"></div>
+        <div class="hour-mark" style="--hour:3;--hour-str:'3'"></div>
+        <div class="hour-mark" style="--hour:4;--hour-str:'4'"></div>
+        <div class="hour-mark" style="--hour:5;--hour-str:'5'"></div>
+        <div class="hour-mark" style="--hour:6;--hour-str:'6'"></div>
+        <div class="hour-mark" style="--hour:7;--hour-str:'7'"></div>
+        <div class="hour-mark" style="--hour:8;--hour-str:'8'"></div>
+        <div class="hour-mark" style="--hour:9;--hour-str:'9'"></div>
+        <div class="hour-mark" style="--hour:10;--hour-str:'10'"></div>
+        <div class="hour-mark" style="--hour:11;--hour-str:'11'"></div>
+        <div class="hour-mark" style="--hour:12;--hour-str:'12'"></div>
+        <div class="hour-hand"></div>
+        <div class="minute-hand"></div>
+        <div class="second-hand"></div>
+    </div>
+</body>
+</html>
