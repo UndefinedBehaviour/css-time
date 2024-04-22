@@ -4,6 +4,13 @@
     initial-value: 0;
 }
 
+:root {
+    --clock-width: 95vmin;
+    --seconds-in-12-hours: calc(12 * 60 * 60);
+    --seconds-in-12-hours-secs: calc(12 * 60 * 60s);
+    animation: passing-time var(--seconds-in-12-hours-secs) infinite steps(var(--seconds-in-12-hours));
+}
+
 body {
     margin: 0;
     font-family: sans-serif;
@@ -11,21 +18,25 @@ body {
 
 .clock {
     position: absolute;
-    width: 100vmin;
-    height: 100vmin;
-    animation: passing-time 43200s infinite steps(43200);
+    left: 0;
+    right: 0;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: var(--clock-width);
+    height: var(--clock-width);
 }
 
 .hour-mark {
-    width: 1vmin;
-    height: 10vmin;
+    width: calc(var(--clock-width) / 100);
+    height: calc(var(--clock-width) / 10);
     margin: auto;
     position: absolute;
     left: 0;
     right: 0;
     background: black;
     transform: rotate(calc(var(--hour) * 30deg));
-    transform-origin: center 50vmin;
+    transform-origin: center calc(var(--clock-width) * 0.5);
 }
 
 .hour-mark::after {
@@ -41,9 +52,9 @@ body {
     position: absolute;
     left: 50%;
     width: 1px;
-    height: 50vmin;
+    height: calc(var(--clock-width) * 0.5);
     transform: translateX(-50%) rotate(calc((var(--time) + var(--offset)) * 360deg / 60));
-    transform-origin: center 50vmin;
+    transform-origin: center calc(var(--clock-width) * 0.5);
 }
 
 .minute-hand {
@@ -52,10 +63,10 @@ body {
     position: absolute;
     left: 50%;
     width: 4px;
-    height: 45vmin;
+    height: calc(var(--clock-width) * 0.45);
     transform: translateX(-50%) rotate(calc((var(--time) + var(--offset)) * 360deg / 60 / 60));
-    transform-origin: center 45vmin;
-    margin-top: 5vmin;
+    transform-origin: center calc(var(--clock-width) * 0.45);
+    margin-top: calc(var(--clock-width) * 0.05);
 }
 
 .hour-hand {
@@ -64,10 +75,10 @@ body {
     position: absolute;
     left: 50%;
     width: 8px;
-    height: 35vmin;
-    transform: translateX(-50%) rotate(calc((var(--time) + var(--offset)) * 360deg / 60 / 60 / 12));
-    transform-origin: center 35vmin;
-    margin-top: 15vmin;
+    height: calc(var(--clock-width) * 0.35);
+    transform: translateX(-50%) rotate(calc((var(--time) + var(--offset)) * 360deg / var(--seconds-in-12-hours)));
+    transform-origin: center calc(var(--clock-width) * 0.35);
+    margin-top: calc(var(--clock-width) * 0.15);
 }
 
 @keyframes passing-time {
@@ -75,6 +86,6 @@ body {
         --time: 0;
     }
     100% {
-      --time: 43200;
+      --time: var(--seconds-in-12-hours);
     }
   }
