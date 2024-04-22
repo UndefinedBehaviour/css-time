@@ -2,9 +2,9 @@
   "name": "css-time",
   "version": "1.0.0",
   "description": "a useless css clock",
-  "main": "index.js",
+  "main": "server/index.js",
   "scripts": {
-    "dev": "nodemon server/index.js",
+    "dev": "nodemon",
     "start": "node server/index.js"
   },
   "repository": {
