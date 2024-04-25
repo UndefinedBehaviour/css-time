@@ -6,9 +6,8 @@ const port = 3000;
 const app = express();
 app.set('trust proxy', true);
 app.set('view engine', 'ejs');
-app.set("views", path.join(__dirname, '..'));
-
-app.use(express.static(path.join(__dirname, '..')));
+app.set("views", path.join(__dirname, '../templates'));
+app.use(express.static(path.join(__dirname, '../assets')));
 
 app.get('/', async (req, res) => {
     let clockOffset = 0;
@@ -19,7 +18,7 @@ app.get('/', async (req, res) => {
     } catch(e) {
         console.log(e);
     }
-    res.render('./index', { clockOffset })
+    res.render('index', { clockOffset })
 });
 
 
