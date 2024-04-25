@@ -7,7 +7,7 @@
     <title>CSS clock</title>
 </head>
 <body>
-    <div class="clock" style="--offset:<%= ~~(Date.now() % 43200000 / 1000) %>">
+    <div class="clock" style="--offset:<%= clockOffset %>">
         <div class="hour-mark" style="--hour:1;--hour-str:'1'"></div>
         <div class="hour-mark" style="--hour:2;--hour-str:'2'"></div>
         <div class="hour-mark" style="--hour:3;--hour-str:'3'"></div>
