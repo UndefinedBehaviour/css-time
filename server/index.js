@@ -14,21 +14,20 @@ app.get('/', async (req, res) => {
     try {
         const response = await fetch(`http://ip-api.com/json/${req.ip}`);
         const tz = (await response.json()).timezone || 'GMT';
-        clockOffset = getCurrentTimeInTimezone(tz);
+        clockOffset = getClockOffsetFromTimezone(tz);
     } catch(e) {
         console.log(e);
     }
-    res.render('index', { clockOffset })
+    res.render('index', clockOffset);
 });
 
 
 app.listen(port, () => {
-    console.log(`App listening on port ${port}`)
+    console.log(`App listening on port ${port}`);
 });
 
-function getCurrentTimeInTimezone(timeZone) {
-    options = { timeZone,  hour: 'numeric', minute: 'numeric', second: 'numeric' };
-    const dateTime = new Date().toLocaleString([], options);
-    [, h, m, s ] = dateTime.match(/(\d+):(\d+):(\d+)/);
-    return 60 * (60 * h + +m) + +s;
-  }
+function getClockOffsetFromTimezone(timeZone) {
+    const options = { timeZone,  hour: 'numeric', minute: 'numeric', second: 'numeric' };
+    const [, hour, minute, second ] = new Date().toLocaleString([], options).match(/(\d+):(\d+):(\d+)/);
+    return { hour, minute, second };
+}

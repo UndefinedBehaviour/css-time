@@ -1,14 +1,5 @@
-@property --time {
-    syntax: "<number>";
-    inherits: true;
-    initial-value: 0;
-}
-
 :root {
     --clock-width: 95vmin;
-    --seconds-in-12-hours: calc(12 * 60 * 60);
-    --seconds-in-12-hours-secs: calc(12 * 60 * 60s);
-    animation: passing-time var(--seconds-in-12-hours-secs) infinite steps(var(--seconds-in-12-hours));
 }
 
 body {
@@ -22,6 +13,14 @@ body {
     height: var(--clock-width);
     inset: 0;
     margin: auto;
+}
+
+.clock:after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(black 3vmin, transparent 3vmin);
+    content: '';
 }
 
 .hour-mark {
@@ -49,8 +48,9 @@ body {
     inset: 50% 50%;
     width: 1px;
     height: calc(var(--clock-width) * 0.5);
-    transform: translateX(-50%) rotate(calc(180deg + (var(--time) + var(--offset)) * 360deg / 60));
     transform-origin: center 0;
+    animation: passing-time 60s infinite steps(60) calc(-1s * var(--second));
+
 }
 
 .minute-hand {
@@ -59,8 +59,8 @@ body {
     inset: 50% 50%;
     width: 4px;
     height: calc(var(--clock-width) * 0.45);
-    transform: translateX(-50%) rotate(calc(180deg + (var(--time) + var(--offset)) * 360deg / 60 / 60));
     transform-origin: center 0;
+    animation: passing-time 3600s infinite steps(3600) calc(-1s * (60 * var(--minute) + var(--second)));
 }
 
 .hour-hand {
@@ -69,15 +69,15 @@ body {
     inset: 50% 50%;
     width: 8px;
     height: calc(var(--clock-width)* 0.35);
-    transform: translateX(-50%) rotate(calc(180deg + (var(--time) + var(--offset))* 360deg / var(--seconds-in-12-hours)));
     transform-origin: center 0;
+    animation: passing-time 43200s infinite steps(43200) calc(-1s * (60 * (60 * var(--hour) + var(--minute)) + var(--second)));
 }
 
 @keyframes passing-time {
     0% {
-        --time: 0;
+        transform: translateX(-50%) rotate(calc(180deg));
     }
     100% {
-      --time: var(--seconds-in-12-hours);
+        transform: translateX(-50%) rotate(calc(180deg + 360deg));
     }
-  }
+}
