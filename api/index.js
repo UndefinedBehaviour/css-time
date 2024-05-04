@@ -1,13 +1,13 @@
-const express = require('express');
-const path = require("path");
+import express from 'express';
+import path from 'path';
 
 const port = 3000;
 
 const app = express();
 app.set('trust proxy', true);
 app.set('view engine', 'ejs');
-app.set("views", path.join(__dirname, '../templates'));
-app.use(express.static(path.join(__dirname, '../assets')));
+app.set('views', path.join(process.cwd(), 'templates'));
+app.use(express.static(path.join(process.cwd(), 'assets')));
 
 app.get('/', async (req, res) => {
     let clockOffset = 0;
