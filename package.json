@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "a useless css clock",
   "main": "server/index.js",
+  "type": "module",
   "scripts": {
     "dev": "nodemon",
     "start": "node server/index.js"
